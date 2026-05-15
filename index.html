@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>AION</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="bg-black text-white min-h-screen flex flex-col items-center justify-center overflow-hidden">
+
+<!-- 🔥 BACKGROUND GLOW -->
+<div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-black blur-3xl"></div>
+
+<!-- 🔝 TOP BAR -->
+<div class="absolute top-5 left-5 flex items-center gap-2 text-cyan-400 text-xl font-bold z-10">
+    <img src="logo.png" class="w-10 h-10 drop-shadow-[0_0_10px_cyan]">
+    AION
+</div>
+
+<div class="absolute top-5 right-5 flex gap-3 z-10">
+
+    <button onclick="goToERP()"
+    class="bg-yellow-500 px-4 py-1 rounded text-black hover:scale-105 transition">
+        ERP
+    </button>
+
+    <button id="authBtn" onclick="handleAuth()"
+    class="bg-red-500 px-4 py-1 rounded hover:scale-105 transition">
+        Logout
+    </button>
+
+</div>
+
+<!-- 🔥 MAIN UI -->
+<div class="flex flex-col items-center justify-center gap-4 z-10">
+
+    <!-- LOGO -->
+    <img src="logo.png"
+    class="w-52 drop-shadow-[0_0_30px_#00ffff] animate-pulse">
+
+    <!-- TITLE -->
+    <h1 class="text-2xl text-cyan-300 tracking-widest">
+        AI ON ASSISTANT
+    </h1>
+
+    <!-- 🎵 CLEAN WAVE (FIXED) -->
+    <div class="wave-box">
+        <canvas id="waveCanvas" width="380" height="70"></canvas>
+    </div>
+
+    <!-- 🎤 BUTTON -->
+    <button id="startBtn"
+    class="px-8 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 text-black font-bold shadow-[0_0_20px_#00ffff] hover:scale-110 transition">
+        🎤 START LISTENING
+    </button>
+
+    <!-- 💬 CHAT -->
+    <div id="chat"
+    class="w-[580px] h-[240px] overflow-y-auto bg-black/40 backdrop-blur-md p-4 rounded-xl border border-purple-500 shadow-[0_0_20px_#8b5cf6]">
+    </div>
+
+</div>
+
+<script>
+/* 🔐 LOGIN PROTECTION */
+if (!localStorage.getItem("token")) {
+    window.location.href = "login.html";
+}
+
+/* 🔗 ERP PAGE */
+function goToERP() {
+    window.location.href = "erp.html";
+}
+
+/* 🔥 LOGIN / LOGOUT SWITCH */
+function handleAuth() {
+    localStorage.removeItem("token");
+    window.location.href = "login.html";
+}
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>

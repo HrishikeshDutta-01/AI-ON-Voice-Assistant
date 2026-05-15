@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Save ERP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex items-center justify-center h-screen bg-gray-900 text-white">
+
+<div class="bg-gray-800 p-6 rounded-xl w-80">
+  <h2 class="text-xl mb-4 text-center">Save ERP Credentials</h2>
+
+  <input id="erp_user" placeholder="ERP Username"
+    class="w-full mb-3 p-2 rounded text-black">
+
+  <input id="erp_pass" type="password" placeholder="ERP Password"
+    class="w-full mb-3 p-2 rounded text-black">
+
+  <button onclick="saveERP()"
+    class="w-full bg-green-500 p-2 rounded">
+    Save
+  </button>
+
+  <button onclick="goBack()"
+    class="w-full mt-3 bg-gray-600 p-2 rounded">
+    Back
+  </button>
+</div>
+
+<script>
+async function saveERP() {
+  const erp_user = document.getElementById("erp_user").value;
+  const erp_pass = document.getElementById("erp_pass").value;
+
+  const res = await fetch("http://127.0.0.1:5000/api/save-erp", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + localStorage.getItem("token")
+    },
+    body: JSON.stringify({ erp_user, erp_pass })
+  });
+
+  const data = await res.json();
+  alert(data.message);
+}
+
+function goBack() {
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
